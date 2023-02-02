@@ -21,6 +21,8 @@ builder.Services.AddDbContext<StoreContext>(options =>
     //options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,7 +30,28 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    IServiceScope? scope = app.Services.CreateScope();
+    StoreContext? context = scope.ServiceProvider.GetRequiredService<StoreContext>();
+    ILogger<Program>? logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+    try
+    {
+
+        context.Database.Migrate();
+        DbInitializer.Initialize(context);
+
+    }
+    catch (Exception exception)
+    {
+        logger.LogError(exception, "Problem Migrating Data");
+    }
+
+
 }
+
+
+
 
 app.UseHttpsRedirection();
 
