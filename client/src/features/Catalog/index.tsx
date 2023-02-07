@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Menu, DatePicker, Space, version } from "antd";
-import { List, ListItem, ListItemAvatar, Avatar, ListItemText, Button } from "@material-ui/core"
-import { Col, Row, Form, Input, Image, Radio } from 'antd';
-import { Typography } from 'antd';
+import { Button } from "@material-ui/core"
 import { Product } from "../../interface/Product";
 import ProductList from "./ProductList";
-const { Title } = Typography;
 
-interface Prop {
-    products: Product[],
-    addProduct: void
-}
+const App = () => {
 
-const App = ({
-    products,
-    addProduct
-}: Prop) => {
+    const [products, setProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        // declare the data fetching function
+        const fetchData = async () => {
+            const data = await fetch('http://localhost:9483/api/Products').then((e) => e.json()).catch((e) => null);
+            setProducts(data);
+        }
+
+        // call the function
+        fetchData()
+            // make sure to catch any error
+            .catch(console.error);
+    }, [setProducts])
 
     return (
         <>
