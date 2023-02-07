@@ -17,7 +17,7 @@ namespace API.Data
                     Name = "GT 86",
                     Description = "Brand New 2017 edition",
                     Price = 4400000,
-                    PictureUrl = "https://s1.cdn.autoevolution.com/images/news/toyota-gt-86-nismo-is-a-cool-play-on-colors-and-parts-139631-7.jpg",
+                    PictureUrl = "https://www.fastcar.co.uk/wp-content/uploads/sites/2/Pandem-Toyota-GT86-1.jpg?w=900",
                     Brand = "Toyota",
                     Type = "New",
                     QuantityInStock = 2,
@@ -41,6 +41,16 @@ namespace API.Data
                     Brand = "Honda",
                     Type = "New",
                     QuantityInStock = 22,
+
+                },
+                 new Product {
+                    Name = "GR 86",
+                    Description = "Brand New 2023 edition",
+                    Price = 5400000,
+                    PictureUrl = "https://www.motortrend.com/uploads/sites/5/2021/08/2022-Toyota-GR-86-2.jpg",
+                    Brand = "Toyota",
+                    Type = "New",
+                    QuantityInStock = 2,
 
                 }
             };
