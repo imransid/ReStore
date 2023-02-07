@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card, Typography, Button, CardActionArea, CardActions, CardContent, CardMedia, CardHeader, Avatar } from "@material-ui/core"
+import { Card, Typography, CardActionArea, CardActions, CardContent, CardMedia, CardHeader, Avatar, colors } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
 import { Product } from "../../interface/Product";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
+
 
 interface Prop {
     product: Product,
@@ -34,7 +37,14 @@ export default function ProductCard({
                     <Avatar>
                         {product.name.charAt(0).toUpperCase()}
                     </Avatar>
-                } title={product.name} />
+                } title={product.name}
+                    titleTypographyProps={{
+                        sx: {
+                            fontWeight: 'bold',
+                            color: 'secondary.main'
+                        }
+                    }}
+                />
                 <CardMedia
                     className={classes.media}
                     image={product.pictureUrl}
@@ -55,7 +65,7 @@ export default function ProductCard({
                 <Button size="small" color="primary">
                     Add to cart
                 </Button>
-                <Button size="small" color="primary">
+                <Button component={Link} to={`/catalog/${product.id}`} size="small" color="primary">
                     View
                 </Button>
             </CardActions>
