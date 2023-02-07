@@ -1,13 +1,12 @@
-import React from "react";
-import "./App.css";
+
 import { AuthState } from "./redux-store/reducers";
 import { useSelector } from "react-redux";
 import { Menu, Button, DatePicker, Space, version } from "antd";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 
-import Login from "./screens/Login"
-import Home from "./screens/Home"
+import Login from "./features/Login"
+import Home from "./features/Home"
 
 
 
@@ -17,15 +16,9 @@ function App() {
   const pending = useSelector((state: AuthState) => state.auth.pending);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flex: 1,
-        height: "100vh",
-      }}
-    >
+    <>
       <Content />
-    </div>
+    </>
   );
 }
 
@@ -33,7 +26,6 @@ const Content = () => {
   return (
     <div>
       <Routes>
-
         <Route element={<Home />} path="/"></Route>
         <Route element={<>Dashboard</>} path="/dashboard"></Route>
         <Route element={<>User List</>} path="/userList"></Route>
