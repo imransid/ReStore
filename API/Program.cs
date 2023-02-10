@@ -1,4 +1,5 @@
 using API.Data;
+using API.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,8 +26,6 @@ builder.Services.AddDbContext<StoreContext>(options =>
 
 var app = builder.Build();
 
-
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -49,9 +48,7 @@ if (app.Environment.IsDevelopment())
         logger.LogError(exception, "Problem Migrating Data");
     }
 
-
 }
-
 
 
 app.UseCors(policy => policy.AllowAnyHeader()
@@ -59,6 +56,7 @@ app.UseCors(policy => policy.AllowAnyHeader()
                             .SetIsOriginAllowed(origin => true)
                             .AllowCredentials());
 
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
