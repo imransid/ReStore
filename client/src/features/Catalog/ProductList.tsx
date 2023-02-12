@@ -19,7 +19,7 @@ export default function ProductList({
 
             {
                 products.map((product) => (
-                    <Grid item xs={3} md={3} key={product.id}>
+                    <Grid item xs={3} md={3} key={product.id + Math.floor(Math.random() * 90109)}>
                         <ProductCard product={product} />
 
                     </Grid>

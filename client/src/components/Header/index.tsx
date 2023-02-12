@@ -102,7 +102,7 @@ const App = ({
                                 midLinks.map(({ title, path }) => (
                                     <ListItem
                                         sx={navStyle}
-
+                                        key={title}
                                         component={NavLink}
                                         to={path}
                                     >
@@ -115,7 +115,7 @@ const App = ({
                     </Box>
                     <Box display={"flex"} alignItems="center" >
                         <IconButton size="large" sx={{ color: 'inherit' }}>
-                            <Badge badgeContent={4} color={"secondary"}>
+                            <Badge overlap="rectangular" badgeContent={4} color={"secondary"}>
                                 <ShoppingCartIcon />
                             </Badge>
                         </IconButton>
@@ -126,6 +126,7 @@ const App = ({
                                         component={NavLink}
                                         to={path}
                                         sx={navStyle}
+                                        key={title}
                                     >
                                         {title.toUpperCase()}
                                     </ListItem>

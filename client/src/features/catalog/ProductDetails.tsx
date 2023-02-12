@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../interface/Product";
+import agent from "../../utils/api";
 
 export default function ProductDetails() {
     const { id } = useParams<{ id: string }>();
@@ -12,8 +13,11 @@ export default function ProductDetails() {
     useEffect(() => {
         // declare the data fetching function
         const fetchData = async () => {
-            await axios.get(`http://localhost:9483/api/Products/${id}`)
-                .then((res) => setProducts(res.data))
+
+            const ID = id !== undefined ? parseInt(id) : 0;
+
+            await agent.Catalog.details(ID)
+                .then((res) => setProducts(res))
                 .catch((e) => console.log("error in ", e))
                 .finally(() => setLoader(false))
 
