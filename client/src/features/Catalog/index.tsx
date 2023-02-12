@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@material-ui/core"
 import { Product } from "../../interface/Product";
 import ProductList from "./ProductList";
+import agent from "../../utils/api";
 
 const App = () => {
 
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
-        // declare the data fetching function
         const fetchData = async () => {
-            const data = await fetch('http://localhost:9483/api/Products').then((e) => e.json()).catch((e) => null);
+            const data = await agent.Catalog.list()
+                .then((products) => products);
             setProducts(data);
         }
 
-        // call the function
         fetchData()
             // make sure to catch any error
             .catch(console.error);
