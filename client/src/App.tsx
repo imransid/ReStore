@@ -12,7 +12,8 @@ import About from "./features/about/AboutPage"
 import Home from "./features/home/HomePage"
 import ProductDetails from "./features/catalog/ProductDetails";
 import ContactPage from "./features/contact/ContactPage";
-
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 const theme = createTheme({
   palette: {
@@ -48,6 +49,7 @@ function App() {
 const Content = () => {
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer position="top-right" hideProgressBar />
       <Routes>
         <Route element={<CatalogList />} path="/catalog"></Route>
         <Route element={<ProductDetails />} path="/catalog/:id"></Route>

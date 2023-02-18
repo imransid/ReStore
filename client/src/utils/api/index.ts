@@ -1,14 +1,24 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "http://localhost:9483/api/";
 
 const responseBody = (response: AxiosResponse) => response.data;
+
+type TodoSuccessResponse = {
+  status: number;
+  title: string;
+  traceId: string;
+  type: string;
+};
 
 axios.interceptors.response.use(
   (response) => {
     return response;
   },
   (error: AxiosError) => {
+    let dataIs: any = error.response?.data;
+    toast.error(dataIs.title);
     return Promise.reject(error.response);
   }
 );

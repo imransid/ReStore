@@ -1,27 +1,27 @@
 ﻿<Properties StartupConfiguration="{A745F702-5A09-4343-8DA8-909E1B8617F7}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Data/StoreContext.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Entities/Basket.cs">
     <Files>
-      <File FileName="Data/StoreContext.cs" Line="1" Column="1" />
+      <File FileName="Data/StoreContext.cs" />
+      <File FileName="Controllers/ProductsController.cs" Line="20" Column="18" />
+      <File FileName="Entities/Basket.cs" Line="9" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="API" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Data" expanded="True">
-                <Node name="StoreContext.cs" selected="True" />
-              </Node>
+              <Node name="Entities" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>
