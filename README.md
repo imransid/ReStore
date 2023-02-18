@@ -19,5 +19,5 @@
 
 
 
-
-
+# code format vscode
+> shift + option + F
