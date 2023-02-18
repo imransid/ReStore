@@ -13,3 +13,11 @@
 # dotnet ef database drop
 
 > Delete OR Drop a Database..
+
+# vscode root mode
+> sudo code --user-data-dir="~/.vscode-root"
+
+
+
+
+

@@ -1,9 +1,10 @@
 import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Product } from "../../interface/Product";
 import agent from "../../utils/api";
+import NotFound from "../notFound";
+
 
 export default function ProductDetails() {
     const { id } = useParams<{ id: string }>();
@@ -30,7 +31,7 @@ export default function ProductDetails() {
     }, [id])
 
     if (loader) return (<h4>loading</h4>)
-    if (!products) return <h4>Product Not Found</h4>
+    if (!products) return <NotFound />
 
     return (
         <Grid container spacing={6}>
