@@ -3,6 +3,7 @@ import { useMediaQuery, useTheme } from '@material-ui/core';
 import { NavLink } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { IconButton, ListItem, Typography, Toolbar, Box } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 type MinHeight = {
     minHeight: number,
@@ -85,6 +86,7 @@ const App = ({
 }: Prop) => {
 
     const classes = useStyles();
+    const navigate = useNavigate();
 
     return (
         <>
@@ -114,7 +116,7 @@ const App = ({
                         </List>
                     </Box>
                     <Box display={"flex"} alignItems="center" >
-                        <IconButton size="large" sx={{ color: 'inherit' }}>
+                        <IconButton  onClick={() => navigate("/basket")} size="large" sx={{ color: 'inherit' }}>
                             <Badge overlap="rectangular" badgeContent={4} color={"secondary"}>
                                 <ShoppingCartIcon />
                             </Badge>
