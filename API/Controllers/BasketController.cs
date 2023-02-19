@@ -21,10 +21,12 @@ namespace API.Controllers
             var basket = await RetrieveBasket();
 
             if (basket == null) return NotFound();
-            BasketDto response = new BasketDto {
+            BasketDto response = new BasketDto
+            {
                 Id = basket.Id,
                 BuyerId = basket.BuyerId,
-                Items = basket.Items.Select(item => new BasketItemDto{
+                Items = basket.Items.Select(item => new BasketItemDto
+                {
                     ProductId = item.ProductId,
                     PictureUrl = item.Product.PictureUrl,
                     Brand = item.Product.Brand,
@@ -48,24 +50,32 @@ namespace API.Controllers
 
             // get product not find application exits.
             var product = await _context.Products.FindAsync(productId);
-            if(product == null) return NotFound(); 
+            if (product == null) return NotFound();
 
             // add item
             basket.AddItem(product, quantity);
 
             // save change
             var result = await _context.SaveChangesAsync() > 0;
-            if(result) return StatusCode(201);
-            return BadRequest(new ProblemDetails{Title = "problem saving to item on the basket."});
+            if (result) return StatusCode(201);
+            return BadRequest(new ProblemDetails { Title = "problem saving to item on the basket." });
         }
 
         [HttpDelete]
         public async Task<ActionResult> RemoveBasketItem(int productId, int quantity)
         {
             // get basket
+            var basket = await RetrieveBasket();
+            if (basket == null) return NotFound();
             // remove basket or reduce quantity
+            basket.RemoveItem(productId, quantity);
             // save change
-            return Ok();
+            var result = await _context.SaveChangesAsync() > 0;
+            if(result) return Ok();
+
+            return BadRequest(new ProblemDetails{
+                Title = "Problem removing from basket"
+            });
         }
 
         private async Task<Basket> RetrieveBasket()
