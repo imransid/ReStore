@@ -14,6 +14,7 @@ import ProductDetails from "./features/catalog/ProductDetails";
 import ContactPage from "./features/contact/ContactPage";
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import BasketPage from "./features/basket/BasketPage";
 
 const theme = createTheme({
   palette: {
@@ -56,6 +57,7 @@ const Content = () => {
         <Route element={<ContactPage />} path="/contact"></Route>
         <Route element={<About />} path="/about"></Route>
         <Route element={<Home />} path="/"></Route>
+        <Route element={<BasketPage/>} path="/basket"></Route>
       </Routes>
     </ThemeProvider>
   );
