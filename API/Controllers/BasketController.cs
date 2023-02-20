@@ -31,11 +31,11 @@ namespace API.Controllers
         {
 
             // get basket || create basket
-            var basket = await RetrieveBasket();
+            Basket? basket = await RetrieveBasket();
             if (basket == null) basket = CreateBasket();
 
             // get product not find application exits.
-            var product = await _context.Products.FindAsync(productId);
+            Product? product = await _context.Products.FindAsync(productId);
             if (product == null) return NotFound();
 
             // add item
@@ -56,12 +56,31 @@ namespace API.Controllers
             // remove basket or reduce quantity
             basket.RemoveItem(productId, quantity);
             // save change
-            var result = await _context.SaveChangesAsync() > 0;
-            if(result) return Ok();
+            bool result = await _context.SaveChangesAsync() > 0;
+            if (result) return Ok();
 
-            return BadRequest(new ProblemDetails{
+            return BadRequest(new ProblemDetails
+            {
                 Title = "Problem removing from basket"
             });
+        }
+
+
+        [HttpDelete("remove-all")]
+        public async Task<ActionResult> RemoveBasketsALLItem()
+        {
+
+            Basket? findResult = await _context.Baskets.FirstOrDefaultAsync(x => x.BuyerId == Request.Cookies["buyerId"]);
+            Basket? basket = await RetrieveBasket();
+            if (findResult != null) basket.RemoveAllItem(findResult.Id);
+            bool saveResult = await _context.SaveChangesAsync() > 0;
+            if (saveResult) return Ok();
+
+            return BadRequest(new ProblemDetails
+            {
+                Title = "Problem removing from basket"
+            });
+
         }
 
         private async Task<Basket> RetrieveBasket()
@@ -74,16 +93,16 @@ namespace API.Controllers
 
         private Basket? CreateBasket()
         {
-            var buyerId = Guid.NewGuid().ToString();
-            var cookieOptions = new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddDays(30) };
+            string? buyerId = Guid.NewGuid().ToString();
+            CookieOptions? cookieOptions = new CookieOptions { IsEssential = true, Expires = DateTime.Now.AddDays(30) };
             Response.Cookies.Append("buyerId", buyerId, cookieOptions);
-            var basket = new Basket { BuyerId = buyerId };
+            Basket? basket = new Basket { BuyerId = buyerId };
 
-            _context.Baskets.Add(basket);
+            _context.Baskets.Add(entity: basket);
             return basket;
         }
 
-          private  BasketDto MapBasketToDto(Basket basket)
+        private BasketDto MapBasketToDto(Basket basket)
         {
             return new BasketDto
             {
