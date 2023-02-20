@@ -9,10 +9,16 @@ namespace API.Entities
 
         public List<BasketItem> Items { get; set; } = new();
 
-        public void AddItem(Product product, int quantity)
+        public async void AddItem(Product product, int quantity)
         {
 
-            if (Items.All(item => item.Id != product.Id))
+            bool checkStatus = Items.All(item => item.ProductId != product.Id);
+
+
+            var activeitems = Items;
+
+            var activeProduct = product;
+            if (checkStatus)
             {
                 Items.Add(new BasketItem
                 {
@@ -21,20 +27,30 @@ namespace API.Entities
                 });
             }
 
-            var existingItem = Items.FirstOrDefault(item => item.Id == product.Id);
+            BasketItem? existingItem = Items.FirstOrDefault(item => item.ProductId == product.Id);
 
             if (existingItem != null) existingItem.Quantity += quantity;
 
         }
 
+
         public void RemoveItem(int productId, int quantity)
         {
-            var item = Items.FirstOrDefault(item => item.Id == productId);
+            BasketItem? item = Items.FirstOrDefault(item => item.Id == productId);
             if (item == null) return;
             item.Quantity -= quantity;
             if (item.Quantity == 0) Items.Remove(item);
 
         }
+
+        public void RemoveAllItem(int basketId)
+        {
+            bool item = Items.All(item => item.BasketId != basketId);
+            if (item) return;
+            Items.RemoveAll(item => item.BasketId == basketId);
+
+        }
+
     }
 }
 
