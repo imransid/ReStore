@@ -36,14 +36,16 @@ const Catalog = {
 };
 
 const Basket = {
-  get : () => request.get("basket"),
-  addItem: (productId : number, quantity : number) => request.post(`basket?productId=${productId}&quantity=${quantity}`, {}),
-  removeItem: (productId : number, quantity : 1) => request.delete(`basket?productId=${productId}&quantity=${quantity}`)
-}
+  get: () => request.get("basket"),
+  addItem: (productId: number, quantity: number) =>
+    request.post(`basket?productId=${productId}&quantity=${quantity}`, {}),
+  removeItem: (productId: number, quantity: number) =>
+    request.delete(`basket?productId=${productId}&quantity=${quantity}`),
+};
 
 const agent = {
   Catalog,
-  Basket
+  Basket,
 };
 
 const TestErrors = {

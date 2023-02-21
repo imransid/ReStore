@@ -1,6 +1,6 @@
 
-import { AuthState } from "./redux-store/reducers";
-import { useSelector } from "react-redux";
+// import { AuthState } from "./redux-store/reducers";
+// import { useSelector } from "react-redux";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import purple from '@material-ui/core/colors/brown';
@@ -15,6 +15,10 @@ import ContactPage from "./features/contact/ContactPage";
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import BasketPage from "./features/basket/BasketPage";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getBasketRequest } from "./redux-store/actions/basketActions"
+import Cookies from 'js-cookie';
 
 const theme = createTheme({
   palette: {
@@ -32,9 +36,18 @@ const theme = createTheme({
 
 
 function App() {
-  const navigate = useNavigate();
 
-  const pending = useSelector((state: AuthState) => state.auth.pending);
+  const dispatch = useDispatch();
+
+  const buyerId = Cookies.get('buyerId')
+
+  useEffect(() => {
+    if (buyerId) {
+      dispatch(getBasketRequest());
+    }
+
+  }, [dispatch, buyerId])
+
 
   return (
     <>
@@ -57,7 +70,7 @@ const Content = () => {
         <Route element={<ContactPage />} path="/contact"></Route>
         <Route element={<About />} path="/about"></Route>
         <Route element={<Home />} path="/"></Route>
-        <Route element={<BasketPage/>} path="/basket"></Route>
+        <Route element={<BasketPage />} path="/basket"></Route>
       </Routes>
     </ThemeProvider>
   );
