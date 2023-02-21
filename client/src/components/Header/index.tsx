@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { IconButton, ListItem, Typography, Toolbar, Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useMemo } from "react";
 
 type MinHeight = {
     minHeight: number,
@@ -88,6 +90,18 @@ const App = ({
     const classes = useStyles();
     const navigate = useNavigate();
 
+    const basket = useSelector((state: any) => state.basket.basket)
+
+    const itemCount = useMemo(() => {
+        if (basket) {
+            let totalItem = basket?.items.reduce((sum: number, item: any) => sum + item?.quantity, 0)
+            return totalItem;
+        } else {
+            return 0;
+        }
+
+    }, [basket])
+
     return (
         <>
             <AppBar>
@@ -116,8 +130,8 @@ const App = ({
                         </List>
                     </Box>
                     <Box display={"flex"} alignItems="center" >
-                        <IconButton  onClick={() => navigate("/basket")} size="large" sx={{ color: 'inherit' }}>
-                            <Badge overlap="rectangular" badgeContent={4} color={"secondary"}>
+                        <IconButton onClick={() => navigate("/basket")} size="large" sx={{ color: 'inherit' }}>
+                            <Badge overlap="rectangular" badgeContent={itemCount} color={"secondary"}>
                                 <ShoppingCartIcon />
                             </Badge>
                         </IconButton>

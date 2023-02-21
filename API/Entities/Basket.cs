@@ -36,7 +36,7 @@ namespace API.Entities
 
         public void RemoveItem(int productId, int quantity)
         {
-            BasketItem? item = Items.FirstOrDefault(item => item.Id == productId);
+            BasketItem? item = Items.FirstOrDefault(item => item.ProductId == productId);
             if (item == null) return;
             item.Quantity -= quantity;
             if (item.Quantity == 0) Items.Remove(item);

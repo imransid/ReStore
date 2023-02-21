@@ -57,7 +57,7 @@ namespace API.Controllers
             basket.RemoveItem(productId, quantity);
             // save change
             bool result = await _context.SaveChangesAsync() > 0;
-            if (result) return Ok();
+            if (result) return CreatedAtRoute("GetBasket", MapBasketToDto(basket));
 
             return BadRequest(new ProblemDetails
             {

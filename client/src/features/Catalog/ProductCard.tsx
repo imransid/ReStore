@@ -6,7 +6,9 @@ import { Button, } from "@mui/material";
 import { Link } from "react-router-dom";
 import agent from "../../utils/api";
 import LoadingButton from '@mui/lab/LoadingButton';
-
+import { useDispatch } from "react-redux";
+import { updateBasket } from "../../redux-store/actions/basketActions";
+import { currencyFormat } from "../../utils";
 
 
 interface Prop {
@@ -32,16 +34,23 @@ export default function ProductCard({
 
     const [loading, setLoading] = useState(false)
 
+    const dispatch = useDispatch()
+
     const handleSubmit = useCallback(async () => {
         setLoading(true);
         let productId = product.id;
-        await agent.Basket.addItem(productId, 1).catch((err) =>{
+        await agent.Basket.addItem(productId, 1)
+            .then(basket => {
+                dispatch(updateBasket(basket));
+                setLoading(false);
+            })
+            .catch((err) => {
                 console.log("Error", err);
                 setLoading(false);
-        }).finally(() => {
-            setLoading(false);
-        })
-      }, [product, setLoading]);
+            }).finally(() => {
+                setLoading(false);
+            })
+    }, [product, setLoading, dispatch]);
 
     const classes = useStyles();
 
@@ -69,7 +78,7 @@ export default function ProductCard({
                 <CardContent>
                     <Typography color="secondary" gutterBottom variant="h5" component="h5">
                         {
-                            product.price
+                            currencyFormat(product.price)
                         }
                     </Typography>
                     <Typography variant="body2" color="textSecondary" >
@@ -78,7 +87,7 @@ export default function ProductCard({
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <LoadingButton loading={loading}  onClick={handleSubmit} size="small" color="primary">
+                <LoadingButton loading={loading} onClick={handleSubmit} size="small" color="primary">
                     Add to cart
                 </LoadingButton>
                 <Button component={Link} to={`/catalog/${product.id}`} size="small" color="primary">

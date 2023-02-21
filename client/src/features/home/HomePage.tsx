@@ -1,9 +1,12 @@
 import { Typography } from "@material-ui/core";
 
+
 export default function HomePage() {
+
+
     return (
         <Typography variant="h2">
-            home
+            WElCOME TO RE-STORE
         </Typography>
     )
 }
