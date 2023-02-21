@@ -5,11 +5,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { RotatingLines } from 'react-loader-spinner'
-import { Box, Grid, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Button, Grid, IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { updateBasket } from "../../redux-store/actions/basketActions";
 import { useDispatch, useSelector } from "react-redux";
 import BasketSummary from "./BasketSummary";
 import { currencyFormat } from "../../utils";
+import { Link } from "react-router-dom";
 // import {rootState}
 
 export default function BasketPage() {
@@ -127,6 +128,9 @@ export default function BasketPage() {
         <Grid item xs={6} />
         <Grid item xs={6} >
           <BasketSummary totalSum={totalSum} />
+          <Button fullWidth component={Link} variant="contained" size="large" to="/checkout">
+            Checkout
+          </Button>
         </Grid>
       </Grid>
     </>

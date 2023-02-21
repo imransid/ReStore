@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getBasketRequest } from "./redux-store/actions/basketActions"
 import Cookies from 'js-cookie';
+import CheckOutPage from "./features/checkOut/CheckOutPage";
 
 const theme = createTheme({
   palette: {
@@ -70,6 +71,7 @@ const Content = () => {
         <Route element={<ContactPage />} path="/contact"></Route>
         <Route element={<About />} path="/about"></Route>
         <Route element={<Home />} path="/"></Route>
+        <Route element={<CheckOutPage />} path="/checkout"></Route>
         <Route element={<BasketPage />} path="/basket"></Route>
       </Routes>
     </ThemeProvider>
