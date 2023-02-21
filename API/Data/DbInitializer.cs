@@ -12,7 +12,7 @@ namespace API.Data
         {
             if (context.Products.Any()) return;
 
-            var Products = new List<Product>{
+            List<Product>? Products = new List<Product>{
                 new Product {
                     Name = "GT 86",
                     Description = "Brand New 2017 edition",
@@ -52,7 +52,39 @@ namespace API.Data
                     Type = "New",
                     QuantityInStock = 2,
 
+                },
+                    new Product {
+                    Name = "Ford Mustang",
+                    Description = "Brand New 2023 edition",
+                    Price = 4000000,
+                    PictureUrl = "https://www.topgear.com/sites/default/files/2022/09/2024%20Mustang%2006.jpg?w=1784&h=1004",
+                    Brand = "Ford",
+                    Type = "New",
+                    QuantityInStock = 22,
+
+                },
+                    new Product {
+                    Name = "Black Edition Nissan GTR ",
+                    Description = "Brand New 2023 edition",
+                    Price = 8400000,
+                    PictureUrl = "https://i.ytimg.com/vi/bF1b_ym8lOo/maxresdefault.jpg",
+                    Brand = "Nissan",
+                    Type = "New",
+                    QuantityInStock = 2,
+
+                },
+                    new Product {
+                    Name = "The BMW S1000RR",
+                    Description = "Brand New 2018 edition",
+                    Price = 500000,
+                    PictureUrl = "https://mcn-images.bauersecure.com/wp-images/4705/600x400/2023_bmw_s1000rr_01.jpg",
+                    Brand = "BMW",
+                    Type = "New",
+                    QuantityInStock = 62,
+
                 }
+
+
             };
 
             foreach (var product in Products)
