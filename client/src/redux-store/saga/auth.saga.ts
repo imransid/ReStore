@@ -1,8 +1,6 @@
 
 
 import {call, put, select} from 'redux-saga/effects';
-import axios from 'axios';
-import {SIGNUP_REQUEST} from '../../utils/constants/actionTypes';
 const _authApiCall = function* (action : any) {
   try {
     let res = true

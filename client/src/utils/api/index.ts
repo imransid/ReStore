@@ -5,13 +5,6 @@ axios.defaults.baseURL = "http://localhost:9483/api/";
 axios.defaults.withCredentials = true;
 const responseBody = (response: AxiosResponse) => response.data;
 
-type TodoSuccessResponse = {
-  status: number;
-  title: string;
-  traceId: string;
-  type: string;
-};
-
 axios.interceptors.response.use(
   (response) => {
     return response;
@@ -24,15 +17,17 @@ axios.interceptors.response.use(
 );
 
 const request = {
-  get: (url: string) => axios.get(url).then(responseBody),
+  get: (url: string, params?: URLSearchParams) =>
+    axios.get(url, { params }).then(responseBody),
   post: (url: string, body: {}) => axios.post(url, body).then(responseBody),
   put: (url: string, body: {}) => axios.put(url, body).then(responseBody),
   delete: (url: string) => axios.delete(url).then(responseBody),
 };
 
 const Catalog = {
-  list: () => request.get("products"),
+  list: (params?: URLSearchParams) => request.get("products", params),
   details: (id: number) => request.get(`products/${id}`),
+  filterItem: () => request.get("products/filters"),
 };
 
 const Basket = {

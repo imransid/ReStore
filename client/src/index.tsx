@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(
 // testing deploy
 
 root.render(
-  <React.StrictMode>
+  <>
     <Provider store={store.store}>
       <PersistGate loading={null} persistor={store.persistor}>
         <BrowserRouter>
@@ -24,7 +24,7 @@ root.render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-  </React.StrictMode>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function
