@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material"
-import { useState, useRef, useEffect, useMemo } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux";
 import { getCatalogRequest } from "../../redux-store/actions/catalogActions";
 
@@ -16,14 +16,21 @@ const ProductSearch = () => {
     useEffect(() => {
         const debouncedSearch = debounce(async () => {
             try {
+
+                let reqData;
                 if (requestPayload !== undefined) {
-                    if (searchTerm !== requestPayload.searchTerm) dispatch(getCatalogRequest({
-                        searchTerm: searchTerm
-                    }));
+
+                    reqData = { ...requestPayload };
+                    reqData['searchTerm'] = searchTerm;
+
+                    if (searchTerm !== requestPayload.searchTerm) dispatch(getCatalogRequest(reqData));
                 } else {
-                    if (searchTerm !== "") dispatch(getCatalogRequest({
+
+                    reqData = {
                         searchTerm: searchTerm
-                    }));
+                    }
+
+                    if (searchTerm !== "") dispatch(getCatalogRequest(reqData));
                 }
 
             } catch (error) {
@@ -37,7 +44,7 @@ const ProductSearch = () => {
         return () => {
             debouncedSearch.cancel();
         };
-    }, [searchTerm, requestPayload]);
+    }, [searchTerm, requestPayload, dispatch]);
 
     const handleSearchInputChange = (event: any) => {
         setSearchTerm(event.target.value);

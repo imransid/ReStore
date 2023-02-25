@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Card, Typography, CardActionArea, CardActions, CardContent, CardMedia, CardHeader, Avatar, colors } from "@material-ui/core"
+import { Card, Typography, CardActionArea, CardActions, CardContent, CardMedia, CardHeader, Avatar } from "@mui/material"
 import { makeStyles } from '@material-ui/core/styles';
 import { Product } from "../../interface/Product";
 import { Button, } from "@mui/material";
@@ -59,14 +59,14 @@ export default function ProductCard({
         <Card >
             <CardActionArea>
                 <CardHeader avatar={
-                    <Avatar>
+                    <Avatar sx={{ bgcolor: 'secondary.main' }}>
                         {product.name.charAt(0).toUpperCase()}
                     </Avatar>
                 } title={product.name}
                     titleTypographyProps={{
                         sx: {
                             fontWeight: 'bold',
-                            color: 'secondary.main'
+                            color: 'primary.main'
                         }
                     }}
                 />

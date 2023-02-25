@@ -35,6 +35,12 @@ const initialState: CatalogState = {
     brands: [],
     types: [],
   },
+  metaData: {
+    currentPage: 1,
+    totalPages: 1,
+    pageSize: 1,
+    totalCount: 1,
+  },
 };
 
 const reducers = (state = initialState, action: CatalogAction) => {
@@ -44,7 +50,8 @@ const reducers = (state = initialState, action: CatalogAction) => {
         ...state,
         brands: action.payload.brands,
         types: action.payload.types,
-        products: action.products,
+        products: action.products.items,
+        metaData: action.products.metaData,
         loading: false,
         appState: "loaded",
       };

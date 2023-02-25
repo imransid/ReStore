@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers, Reducer } from "redux";
 
 import authReducer from "./authReducer";
 import basketReducer from "./basketReducer";
@@ -10,6 +10,6 @@ const rootReducer = combineReducers({
   catalog: catalogReducer,
 });
 
-export type AuthState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;

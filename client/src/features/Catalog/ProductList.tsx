@@ -1,27 +1,25 @@
 import { Grid } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import ProductCardSkeleton from "../../components/ProductCardSkeleton";
 import { Product } from "../../interface/Product";
 import ProductCard from "./ProductCard";
 
-interface Prop {
-    products: Product[],
-}
 
+export default function ProductList() {
 
-
-export default function ProductList({
-    products
-}: Prop) {
-
+    const loading = useSelector((state: any) => state.catalog.loading)
+    const products = useSelector((state: any) => state.catalog.products)
 
     return (
 
         <Grid container spacing={3}>
 
             {
-                products.map((product) => (
+                products.map((product: Product) => (
                     <Grid item xs={3} md={3} key={product.id + Math.floor(Math.random() * 90109)}>
-                        <ProductCard product={product} />
-
+                        {
+                            loading ? <ProductCardSkeleton /> : <ProductCard product={product} />
+                        }
                     </Grid>
 
                 ))
