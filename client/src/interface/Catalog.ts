@@ -2,6 +2,7 @@ import {
   CATALOG_FILTER_ITEM_LOAD_SUCCESSFULLY,
   CATALOG_REQUEST,
 } from "../utils/constants/actionTypes";
+import { MetaData } from "./Pagination";
 
 import { Product } from "./Product";
 
@@ -17,6 +18,7 @@ export interface CatalogState {
   sortOptions: sortOption[];
   appState: string;
   requestPayload: requestPayload;
+  metaData?: MetaData;
 }
 
 interface payload {
@@ -24,7 +26,11 @@ interface payload {
   types: string[];
 }
 
-export interface requestPayload {
+interface IObjectKeys {
+  [key: string]: string | undefined | string[] | number;
+}
+
+export interface requestPayload extends IObjectKeys {
   pageNumber?: number;
   pageSize?: number;
   searchTerm?: string;
@@ -33,10 +39,15 @@ export interface requestPayload {
   types?: string[];
 }
 
+export interface axiosData {
+  items: Array<Product>;
+  metaData: MetaData;
+}
+
 export interface GetFilterItemSuccess {
   type: typeof CATALOG_FILTER_ITEM_LOAD_SUCCESSFULLY;
   payload: payload;
-  products: Array<Product>;
+  products: axiosData;
 }
 
 export interface GetFilterItem {

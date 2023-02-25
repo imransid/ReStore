@@ -1,11 +1,14 @@
-import {createSelector} from "reselect"
+import { createSelector } from "reselect";
 
-import { AuthState } from "./reducers"
+import { RootState } from "./reducers";
 
-const getPending = (state:AuthState ) => state.auth.pending
-const getToken = (state:AuthState ) => state.auth.token
-const getError = (state:AuthState ) => state.auth.error
+const getPending = (state: RootState) => state.auth.pending;
+const getToken = (state: RootState) => state.auth.token;
+const getError = (state: RootState) => state.auth.error;
 
-export const getAuthSelector = createSelector(getToken, (token) => token)
-export const getPendingSelector = createSelector(getPending, (pending) => pending)
-export const getErrorSelector = createSelector(getError, (error) => error)
+export const getAuthSelector = createSelector(getToken, (token) => token);
+export const getPendingSelector = createSelector(
+  getPending,
+  (pending) => pending
+);
+export const getErrorSelector = createSelector(getError, (error) => error);
