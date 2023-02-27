@@ -1,5 +1,7 @@
 using API.Data;
+using API.Entities;
 using API.Middleware;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,7 +24,16 @@ builder.Services.AddDbContext<StoreContext>(options =>
     //options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+// Identity configuration
+builder.Services.AddIdentityCore<User>((opt) =>
+{
+    opt.User.RequireUniqueEmail = true;
+})
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<StoreContext>();
 
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -35,12 +46,12 @@ if (app.Environment.IsDevelopment())
     IServiceScope? scope = app.Services.CreateScope();
     StoreContext? context = scope.ServiceProvider.GetRequiredService<StoreContext>();
     ILogger<Program>? logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    UserManager<User>? userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
 
     try
     {
-
-        context.Database.Migrate();
-        DbInitializer.Initialize(context);
+        await context.Database.MigrateAsync();
+        await DbInitializer.Initialize(context, userManager);
 
     }
     catch (Exception exception)
