@@ -1,4 +1,9 @@
-import { SIGNUP_REQUEST } from "../utils/constants/actionTypes";
+import {
+  SIGNUP_REQUEST,
+  LOGIN_REQUEST,
+  SIGH_IN_ERROR,
+  SIGH_IN_SUCCESSFULLY,
+} from "../utils/constants/actionTypes";
 
 export interface IAuth {
   token: string;
@@ -8,16 +13,27 @@ export interface AuthState {
   pending: boolean;
   token: string;
   error: string | null;
+  loading: boolean;
+  userData: APIResponse | null;
 }
 
 export interface SignupPayload {
-  values: { email: string; password: string };
+  values: { username: string; password: string };
   callback: any;
 }
 
 export interface SignInPayload {
-  values: { email: string; password: string };
-  callback: any;
+  values: { username: string; password: string };
+}
+
+export interface SignInRequest {
+  type: typeof LOGIN_REQUEST;
+  payload: SignInPayload;
+}
+
+export interface SignInRequest {
+  type: typeof LOGIN_REQUEST;
+  payload: SignInPayload;
 }
 
 export interface SignupRequest {
@@ -25,9 +41,32 @@ export interface SignupRequest {
   payload: SignupPayload;
 }
 
+export interface APIResponse {
+  email: string;
+  userName: string;
+  token: string;
+}
+
 export interface LoginSuccess {
   type: typeof SIGNUP_REQUEST;
   payload: SignInPayload;
 }
 
-export type AuthAction = SignupRequest | LoginSuccess;
+export interface authFailed {
+  type: typeof SIGH_IN_ERROR;
+}
+
+export interface LoginReq {
+  type: typeof LOGIN_REQUEST;
+}
+export interface SignInSuccessfully {
+  type: typeof SIGH_IN_SUCCESSFULLY;
+  payload: APIResponse;
+}
+
+export type AuthAction =
+  | SignupRequest
+  | LoginSuccess
+  | authFailed
+  | LoginReq
+  | SignInSuccessfully;

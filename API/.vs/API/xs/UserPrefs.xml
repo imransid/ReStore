@@ -1,27 +1,29 @@
 ﻿<Properties StartupConfiguration="{A745F702-5A09-4343-8DA8-909E1B8617F7}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Entities/Basket.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/bs302/Documents/GitHub/ReStore/API/Controllers/AccountController.cs" relfile="Controllers/AccountController.cs" line="26" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Data/StoreContext.cs" />
-      <File FileName="Controllers/ProductsController.cs" Line="20" Column="18" />
-      <File FileName="Entities/Basket.cs" Line="9" Column="1" />
+      <File FileName="Controllers/AccountController.cs" Line="22" Column="1" />
+      <File FileName="Program.cs" Line="126" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="API" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Entities" expanded="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
