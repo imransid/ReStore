@@ -47,10 +47,16 @@ const Basket = {
   removeItem: (productId: number, quantity: number) =>
     request.delete(`basket?productId=${productId}&quantity=${quantity}`),
 };
+const auth = {
+  signIn: (body: {}) => request.post("Account/login", body),
+  signUp: (productId: number, quantity: number) =>
+    request.delete(`basket?productId=${productId}&quantity=${quantity}`),
+};
 
 const agent = {
   Catalog,
   Basket,
+  auth,
 };
 
 const TestErrors = {
