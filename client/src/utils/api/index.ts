@@ -49,8 +49,7 @@ const Basket = {
 };
 const auth = {
   signIn: (body: {}) => request.post("Account/login", body),
-  signUp: (productId: number, quantity: number) =>
-    request.delete(`basket?productId=${productId}&quantity=${quantity}`),
+  signUp: (body: {}) => request.post("Account/register", body),
 };
 
 const agent = {

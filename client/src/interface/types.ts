@@ -3,6 +3,7 @@ import {
   LOGIN_REQUEST,
   SIGH_IN_ERROR,
   SIGH_IN_SUCCESSFULLY,
+  SIGH_OUT_SUCCESSFULLY,
 } from "../utils/constants/actionTypes";
 
 export interface IAuth {
@@ -64,9 +65,14 @@ export interface SignInSuccessfully {
   payload: APIResponse;
 }
 
+export interface SignOutSuccessfully {
+  type: typeof SIGH_OUT_SUCCESSFULLY;
+}
+
 export type AuthAction =
   | SignupRequest
   | LoginSuccess
   | authFailed
   | LoginReq
-  | SignInSuccessfully;
+  | SignInSuccessfully
+  | SignOutSuccessfully;

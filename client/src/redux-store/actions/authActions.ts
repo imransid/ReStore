@@ -2,6 +2,7 @@ import {
   SIGNUP_REQUEST,
   SIGH_IN_SUCCESSFULLY,
   LOGIN_REQUEST,
+  SIGH_OUT_SUCCESSFULLY,
 } from "../../utils/constants/actionTypes";
 import {
   SignupRequest,
@@ -26,4 +27,8 @@ export const signInRequestSuccess = (
 ): SignInSuccessfully => ({
   type: SIGH_IN_SUCCESSFULLY,
   payload,
+});
+
+export const SIgnOut = () => ({
+  type: SIGH_OUT_SUCCESSFULLY,
 });

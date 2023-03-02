@@ -6,6 +6,7 @@ import { IconButton, ListItem, Typography, Toolbar, Box } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useMemo } from "react";
+import SignedInMenu from "../SignedInMenu";
 
 type MinHeight = {
     minHeight: number,
@@ -91,7 +92,7 @@ const App = ({
     const navigate = useNavigate();
 
     const basket = useSelector((state: any) => state.basket.basket)
-
+    const user = useSelector((state: any) => state.auth.userData)
     const itemCount = useMemo(() => {
         if (basket) {
             let totalItem = basket?.items.reduce((sum: number, item: any) => sum + item?.quantity, 0)
@@ -135,21 +136,26 @@ const App = ({
                                 <ShoppingCartIcon />
                             </Badge>
                         </IconButton>
-                        <List className={classes.rightList} >
-                            {
-                                rightLinks.map(({ title, path }) => (
-                                    <ListItem
-                                        component={NavLink}
-                                        to={path}
-                                        sx={navStyle}
-                                        key={title}
-                                    >
-                                        {title.toUpperCase()}
-                                    </ListItem>
+                        {
+                            user !== null ? <SignedInMenu /> :
+                                (
+                                    <List className={classes.rightList} >
+                                        {
+                                            rightLinks.map(({ title, path }) => (
+                                                <ListItem
+                                                    component={NavLink}
+                                                    to={path}
+                                                    sx={navStyle}
+                                                    key={title}
+                                                >
+                                                    {title.toUpperCase()}
+                                                </ListItem>
 
-                                ))
-                            }
-                        </List>
+                                            ))
+                                        }
+                                    </List>
+                                )
+                        }
                     </Box>
 
                 </Toolbar>

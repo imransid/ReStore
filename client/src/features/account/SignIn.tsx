@@ -13,23 +13,22 @@ import { signInRequest, signInRequestSuccess } from "../../redux-store/actions/a
 import { useDispatch } from 'react-redux';
 import { FieldValue, FieldValues, useForm } from "react-hook-form";
 import agent from '../../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
+    const navigate = useNavigate();
 
     const { register, handleSubmit } = useForm();
 
     const dispatch = useDispatch();
-
-    // const [values, setValues] = React.useState({
-    //     username: '',
-    //     password: ''
-    // });
 
     async function submitForm(data: FieldValues) {
         let res = await agent.auth.signIn(data);
 
         if (res) {
             dispatch(signInRequestSuccess(res))
+
+            navigate("/catalog")
         }
 
     }

@@ -3,6 +3,7 @@ import {
   SIGH_IN_ERROR,
   LOGIN_REQUEST,
   SIGH_IN_SUCCESSFULLY,
+  SIGH_OUT_SUCCESSFULLY,
 } from "../../../utils/constants/actionTypes";
 
 import { AuthAction, AuthState } from "../../../interface/types";
@@ -38,11 +39,13 @@ const reducers = (state = initialState, action: AuthAction) => {
         loading: false,
         userData: action.payload,
       };
-    default:
+    case SIGH_OUT_SUCCESSFULLY:
       return {
         ...state,
-        loading: false,
+        userData: null,
       };
+    default:
+      return state;
   }
 };
 
