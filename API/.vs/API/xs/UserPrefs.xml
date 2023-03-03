@@ -1,38 +1,24 @@
 ﻿<Properties StartupConfiguration="{A745F702-5A09-4343-8DA8-909E1B8617F7}|Default">
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ProductsController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/OrdersControllers.cs">
     <Files>
-      <File FileName="Data/DbInitializer.cs" Line="21" Column="56" />
-      <File FileName="DTOs/UserDto.cs" Line="7" Column="29" />
-      <File FileName="Entities/Address.cs" Line="16" Column="1" />
-      <File FileName="Entities/OrderAggregate/ProductItemOrdered.cs" Line="6" Column="3" />
-      <File FileName="Entities/OrderAggregate/ShippingAddress.cs" Line="12" Column="1" />
-      <File FileName="Entities/OrderAggregate/OrderStatus.cs" Line="11" Column="1" />
-      <File FileName="Entities/OrderAggregate/OrderItem.cs" Line="9" Column="36" />
-      <File FileName="Entities/OrderAggregate/Order.cs" Line="12" Column="25" />
-      <File FileName="RequestHelpers/PaginationParams.cs" Line="7" Column="30" />
-      <File FileName="Controllers/ProductsController.cs" Line="35" Column="61" />
-      <File FileName="RequestHelpers/PagedList.cs" Line="28" Column="33" />
-      <File FileName="RequestHelpers/MetaData.cs" Line="1" Column="1" />
-      <File FileName="RequestHelpers/ProductParams.cs" Line="3" Column="40" />
-      <File FileName="DTOs/BasketDto.cs" Line="1" Column="1" />
-      <File FileName="Entities/Product.cs" Line="19" Column="2" />
-      <File FileName="Entities/Basket.cs" Line="10" Column="31" />
-      <File FileName="Entities/BasketItem.cs" Line="20" Column="2" />
+      <File FileName="Entities/Role.cs" Line="9" Column="6" />
       <File FileName="Entities/User.cs" Line="8" Column="6" />
+      <File FileName="Data/StoreContext.cs" Line="47" Column="18" />
+      <File FileName="Controllers/OrdersControllers.cs" Line="21" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="API" expanded="True">
             <Node name="API" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="ProductsController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -40,5 +26,4 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

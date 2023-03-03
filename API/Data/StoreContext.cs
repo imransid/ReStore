@@ -3,44 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using API.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using API.Entities.OrderAggregate;
 
 namespace API.Data
 {
-    // public class StoreContext : IdentityDbContext<IdentityUser, IdentityRole, string>
-    // {
-    //     public StoreContext(DbContextOptions options) : base(options)
-    //     {
-    //     }
 
-    //     public DbSet<Product> Products { get; set; }
-    //     public DbSet<Basket> Baskets { get; set; }
 
-    //     // Add DbSet for IdentityUser
-    //     public DbSet<IdentityUser> Users { get; set; }
-
-    //     protected override void OnModelCreating(ModelBuilder builder)
-    //     {
-    //         base.OnModelCreating(builder);
-
-    //         builder.Entity<IdentityRole>()
-    //         .HasData(
-    //             new IdentityRole
-    //             {
-    //                 Name = "Member",
-    //                 NormalizedName = "Member",
-    //                 //Id = "1"
-    //             },
-    //              new IdentityRole
-    //              {
-    //                  Name = "Admin",
-    //                  NormalizedName = "Admin",
-    //                  //Id = "2"
-    //              }
-    //         );
-    //     }
-    // }
-
-    public class StoreContext : IdentityDbContext<User, IdentityRole, string>
+    public class StoreContext : IdentityDbContext<User, Role, int>
     {
         public StoreContext(DbContextOptions options) : base(options)
         {
@@ -48,25 +17,35 @@ namespace API.Data
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         // Add DbSet for IdentityUser
         // public DbSet<IdentityUser> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
+
             base.OnModelCreating(builder);
 
-            builder.Entity<IdentityRole>()
+            // one to one  relationship
+            builder.Entity<User>()
+                .HasOne(a => a.Address)
+                .WithOne()
+                .HasForeignKey<UserAddress>(a => a.Id)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Role>()
             .HasData(
-                new IdentityRole
+                new Role
                 {
-                    Id = "1",
+                    Id = 1,
                     Name = "Member",
                     NormalizedName = "MEMBER"
                 },
-                new IdentityRole
+                new Role
                 {
-                    Id = "2",
+                    Id = 2,
                     Name = "Admin",
                     NormalizedName = "ADMIN"
                 });

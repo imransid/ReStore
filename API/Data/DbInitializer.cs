@@ -15,7 +15,7 @@ namespace API.Data
                 {
                     UserName = "memberRafa",
                     Email = "member@gmail.com",
-                    Id = "44"
+                    // Id = "44"
                 };
 
                 await userManager.CreateAsync(member, "pas$$worD92");
@@ -25,7 +25,7 @@ namespace API.Data
                 {
                     UserName = "adminRafa",
                     Email = "admin@gmail.com",
-                    Id = "77"
+                    // Id = "77"
                 };
 
 
